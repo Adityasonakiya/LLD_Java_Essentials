@@ -13,7 +13,16 @@ public class ThreadCreationDemo {
         // Preferrable, as now this runnable class can implement other classes/interfaces as well, but if I make a thread
         // by extending Thread class, that class can't extend any other class
         Thread t2 = new Thread(new ThreadViaRunnableInterface(), "custom-name-ThreadViaRunnableInterface");
-        t2.run();
+        // t2.run();
+        
+        // this can be done via lambda as well
+        Thread t3 = new Thread(() -> {
+            for(int i = 0; i < 5; i++) {
+                System.out.println("Inside Lambda Runable run() "+ i);
+            }
+        }, "custom-name-ThreadViaRunnableLambda");
+        t3.start();
+        
 
         System.out.println("main is exiting...");
     }
