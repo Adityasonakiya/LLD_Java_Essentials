@@ -40,6 +40,18 @@ class ThreadSafeStack {
         // So now, for all synchronized methods in the class, they have same lock
         // which means, if multiple threads are calling multiple methods of this class instance, 
         // only 1 thread can execute all synchronized methods at a time.
+        
+        // Visual Timeline ---->
+        Thread-1(add)   Lock Acquired
+                        |
+                        |---- sleep(1 sec) ----|
+                        |
+                        Lock Released
+
+        Thread-2(remove)    Waiting...
+                            Waiting...
+                            Waiting...
+                            Lock Acquired
 
         // Note - Since internally, static methods use ClassName.class as lock and non-static methods use this,
         // so, due to seperate locks, threads can enter static and non-static methods at the same time.
