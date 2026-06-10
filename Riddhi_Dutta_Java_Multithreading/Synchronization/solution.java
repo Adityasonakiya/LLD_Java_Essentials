@@ -84,7 +84,19 @@ class ThreadSafeStack {
         top = top -1;
         return val;
     }
-}
+
+        // How does JVM know who owns the lock?
+        // Every Java object contains an internal monitor (lock).
+        // st {
+        //     monitor
+        // }
+        // When a thread enters:
+        // synchronized(st)
+        // JVM stores:
+        // monitor.owner = currentThread
+        // If Other threads trying to enter: synchronized(st), JVM sees: owner != null
+        // and move new threads to the BLOCKED state until the owner releases it.
+    }
 
 
 
